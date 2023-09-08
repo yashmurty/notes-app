@@ -13,15 +13,6 @@ entities - These will be the entities that we store in our database.
 ```
 project-root/
 │
-├── auth/
-│   ├── controllers/
-│   │   └── AuthController.java
-│   ├── services/
-│   │   └── AuthService.java
-│   └── dtos/
-│      └── AuthDTO.java
-│   
-│
 ├── user/
 │   ├── controllers/
 │   │   └── UserController.java
@@ -33,6 +24,10 @@ project-root/
 │   │   └── UserDTO.java
 │   └── entities/
 │       └── UserEntity.java
+│
+├── notes/
+│   ├── controllers/
+│   │   └── ...
 │
 └── common/
     └── constants/
