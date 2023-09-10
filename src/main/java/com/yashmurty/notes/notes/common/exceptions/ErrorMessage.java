@@ -8,5 +8,5 @@ public record ErrorMessage(
     String message,
     String description,
     Object errorDetails,
-    String exceptionType
+    String errorUniqueKey
 ) {}

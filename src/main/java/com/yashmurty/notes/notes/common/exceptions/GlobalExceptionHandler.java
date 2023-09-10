@@ -9,6 +9,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.context.request.WebRequest;
 
 @ControllerAdvice
@@ -44,6 +45,23 @@ public class GlobalExceptionHandler {
             errors,
             ex.getClass().getSimpleName()
         );
-        return new ResponseEntity<>(message, HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<ErrorMessage> handleIllegalArgumentException(
+        IllegalArgumentException ex,
+        WebRequest request
+    ) {
+        final ErrorMessage message = new ErrorMessage(
+            HttpStatus.BAD_REQUEST.value(),
+            LocalDateTime.now(),
+            ex.getMessage(),
+            request.getDescription(false),
+            ex.getClass(),
+            ex.getClass().getSimpleName()
+        );
+
+        return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
     }
 }
