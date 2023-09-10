@@ -16,4 +16,8 @@ public class SignupInput {
     @Size(max = 50)
     @Email
     private String email;
+
+    @NotBlank
+    @Size(min = 8, max = 40)
+    private String password;
 }

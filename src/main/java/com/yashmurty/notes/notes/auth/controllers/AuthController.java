@@ -8,7 +8,6 @@ import com.yashmurty.notes.notes.auth.services.AuthService;
 import com.yashmurty.notes.notes.common.constants.Constants;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
