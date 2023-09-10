@@ -6,6 +6,7 @@ import com.yashmurty.notes.notes.auth.exceptions.EmailAlreadyExistsException;
 import com.yashmurty.notes.notes.auth.exceptions.UsernameAlreadyExistsException;
 import com.yashmurty.notes.notes.user.services.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -13,11 +14,9 @@ import org.springframework.stereotype.Service;
 public class AuthService {
 
     private final UserService userService;
+    private final PasswordEncoder passwordEncoder;
 
     public SignupOutput signup(SignupInput signupInput) {
-        // Log the signupInput object.
-        System.out.println(signupInput);
-        // Check if username & email already exists
         if (userService.checkIfUsernameExists(signupInput.getUsername())) {
             throw new UsernameAlreadyExistsException();
         }
@@ -25,7 +24,11 @@ public class AuthService {
             throw new EmailAlreadyExistsException();
         }
 
-        // Create user account. Hash the password.
+        signupInput.setPassword(passwordEncoder.encode(signupInput.getPassword()));
+        System.out.println(signupInput);
+
+        // Create user account.
+
         // Return success response.
         return new SignupOutput(signupInput.getEmail());
     }

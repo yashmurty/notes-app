@@ -12,10 +12,12 @@ public class UserService {
     }
 
     public boolean checkIfEmailExists(String email) {
-        return true;
+        return false;
     }
 
     public CreateUserOutput createUser(CreateUserInput createUserInput) {
+        System.out.println(createUserInput);
+
         return new CreateUserOutput(createUserInput.getEmail());
     }
 }
