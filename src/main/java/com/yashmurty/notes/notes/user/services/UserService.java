@@ -12,7 +12,7 @@ public class UserService {
     }
 
     public boolean checkIfEmailExists(String email) {
-        return false;
+        return true;
     }
 
     public CreateUserOutput createUser(CreateUserInput createUserInput) {
