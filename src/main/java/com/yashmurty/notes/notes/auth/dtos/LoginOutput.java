@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class SignupOutput {
+public class LoginOutput {
 
     private String email;
 }
