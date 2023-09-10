@@ -1,5 +1,7 @@
 package com.yashmurty.notes.notes.auth.controllers;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.yashmurty.notes.notes.auth.dtos.SignupInput;
 import com.yashmurty.notes.notes.auth.dtos.SignupOutput;
 import com.yashmurty.notes.notes.common.constants.Constants;
@@ -19,7 +21,15 @@ public class AuthController {
     @PostMapping("/signup")
     public ResponseEntity<?> signup(@Valid @RequestBody SignupInput signupInput) {
         // Log the signupInput object.
-        System.out.println("signupInput : " + signupInput);
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            String jsonString = mapper.writeValueAsString(signupInput);
+            System.out.println(jsonString);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+            System.out.println("Error converting object to JSON: " + e.getMessage());
+        }
+
         return ResponseEntity.ok(new SignupOutput(signupInput.getEmail()));
     }
 

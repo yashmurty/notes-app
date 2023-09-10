@@ -1,7 +1,11 @@
 package com.yashmurty.notes.notes.auth.dtos;
 
 import jakarta.validation.constraints.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@NoArgsConstructor
 public class SignupInput {
 
     @NotBlank
@@ -12,20 +16,4 @@ public class SignupInput {
     @Size(max = 50)
     @Email
     private String email;
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 }

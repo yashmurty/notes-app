@@ -1,12 +1,8 @@
 package com.yashmurty.notes.notes.common.exceptions;
 
 import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -20,7 +16,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorMessage> globalExceptionHandler(Exception ex, WebRequest request) {
-        ErrorMessage message = new ErrorMessage(
+        final ErrorMessage message = new ErrorMessage(
             HttpStatus.INTERNAL_SERVER_ERROR.value(),
             LocalDateTime.now(),
             ex.getMessage(),
@@ -29,12 +25,12 @@ public class GlobalExceptionHandler {
             ex.getClass().getSimpleName()
         );
 
-        return new ResponseEntity<ErrorMessage>(message, HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<>(message, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ErrorMessage> handleValidationErrors(MethodArgumentNotValidException ex, WebRequest request) {
-        Map<String, String> errors = ex
+        final Map<String, String> errors = ex
             .getBindingResult()
             .getFieldErrors()
             .stream()
@@ -48,6 +44,6 @@ public class GlobalExceptionHandler {
             errors,
             ex.getClass().getSimpleName()
         );
-        return new ResponseEntity<ErrorMessage>(message, HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<>(message, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
