@@ -18,6 +18,6 @@ public class UserService {
     public CreateUserOutput createUser(CreateUserInput createUserInput) {
         System.out.println(createUserInput);
 
-        return new CreateUserOutput(createUserInput.getUsername(), createUserInput.getEmail());
+        return new CreateUserOutput(createUserInput.getUsername(), createUserInput.getEmail(), 0);
     }
 }

@@ -42,6 +42,6 @@ public class AuthService {
     }
 
     private static SignupOutput convertToSignupOutput(CreateUserOutput createUserOutput) {
-        return new SignupOutput(createUserOutput.getEmail());
+        return new SignupOutput(createUserOutput.getEmail(), createUserOutput.getId());
     }
 }

@@ -9,4 +9,5 @@ public class CreateUserOutput {
 
     private String username;
     private String email;
+    private int id;
 }

@@ -8,6 +8,7 @@ import com.yashmurty.notes.notes.auth.services.AuthService;
 import com.yashmurty.notes.notes.common.constants.Constants;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,7 +27,7 @@ public class AuthController {
     @PostMapping("/signup")
     public ResponseEntity<?> signup(@Valid @RequestBody SignupInput signupInput) {
         var signupOutput = authService.signup(signupInput);
-        return ResponseEntity.ok(signupOutput);
+        return ResponseEntity.status(HttpStatus.CREATED).body(signupOutput);
     }
 
     @PostMapping("/login")
