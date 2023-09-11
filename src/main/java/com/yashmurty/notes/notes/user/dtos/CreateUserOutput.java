@@ -7,5 +7,6 @@ import lombok.Data;
 @AllArgsConstructor
 public class CreateUserOutput {
 
+    private String username;
     private String email;
 }
